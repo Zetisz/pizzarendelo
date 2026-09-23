@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Pizzarendelő" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="Lb" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" MaxWidth="200" MaxHeight="160" Margin="20,0,0,0"></ListBox>
+        <ListBox x:Name="Lb" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" MaxWidth="200" MaxHeight="160" Margin="20,0,0,0" SelectionChanged="lb_SelectionChanged"></ListBox>
         <ListBox x:Name="LbOrder" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20" MaxWidth="200" MaxHeight="160" Margin="0,0,20,0"></ListBox>
         <TextBox x:Name="TxtAdd" Text="" Height="50" Width="500" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,0"></TextBox>
         <TextBox x:Name="TxtSize" Text="" Height="50" Width="500" FontSize="30" HorizontalAlignment="Left" Margin="20, 150, 0, 0"></TextBox>

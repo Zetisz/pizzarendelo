@@ -17,19 +17,13 @@ namespace pizzarendelo;
 public partial class MainWindow : Window
 {
     private List<string> _sizes = ["kicsi", "közepes", "nagy"];
+    private List<string> pizzas = ["Margherita", "Sonkás", "Hawaii", "Négy sajtos", "Magyaros"];
+    private List<string> ordered = [];
     public MainWindow()
     {
         InitializeComponent();
-        ListboxInit();
-    }
-
-    private void ListboxInit()
-    {
-        List<string> pizzas = ["Margherita", "Sonkás", "Hawaii", "Négy sajtos", "Magyaros"];
-        foreach (var i in pizzas)
-        {
-            Lb.Items.Add(i);
-        }
+        Lb.ItemsSource = pizzas;
+        LbOrder.ItemsSource = ordered;
     }
     
     private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
@@ -40,8 +34,11 @@ public partial class MainWindow : Window
             return;
         }
         RefreshError();
-        if (!Lb.Items.Contains(TxtAdd.Text))
-            Lb.Items.Add(TxtAdd.Text);
+        if (!pizzas.Contains(TxtAdd.Text))
+        {
+            pizzas.Add(TxtAdd.Text);
+            Lb.Items.Refresh();
+        }
         else
         {
             LabelError.Content = "Ez a pizza mar létezik!";
@@ -52,7 +49,8 @@ public partial class MainWindow : Window
     {
         RefreshError();
         if (Lb.SelectedItems.Count == 0) return;
-        Lb.Items.Remove(Lb.SelectedItems[0]);
+        pizzas.Remove((string)Lb.SelectedItem);
+        Lb.Items.Refresh();
     }
 
     private void BtnOrder_OnClick(object sender, RoutedEventArgs e)
@@ -63,13 +61,13 @@ public partial class MainWindow : Window
             return;
         }
         RefreshError();
-        Label.Content = Lb.SelectedItems[0];
         if (_sizes.Contains(TxtSize.Text))
         {
-            var selectedPizza = Lb.SelectedItems[0] + " - " + TxtSize.Text;; 
-            LbOrder.Items.Add(selectedPizza);
+            var selectedPizza = Lb.SelectedItem + " - " + TxtSize.Text;; 
+            ordered.Add(selectedPizza);
+            LbOrder.Items.Refresh();
             
-            LNum.Content = LbOrder.Items.Count;
+            LNum.Content = ordered.Count;
         }
         else
         {
@@ -81,14 +79,17 @@ public partial class MainWindow : Window
     {
         RefreshError();
         if (LbOrder.SelectedItems.Count == 0) return;
-        LbOrder.Items.Remove(LbOrder.SelectedItems[0]);
+        ordered.Remove((string)LbOrder.SelectedItem);
+        LbOrder.Items.Refresh();
+        LNum.Content = ordered.Count;
     }
     
     private void BtnDeleteAll_OnClick(object sender, RoutedEventArgs e)
     {
         RefreshError();
-        LbOrder.Items.Clear();
-        LNum.Content = LbOrder.Items.Count;
+        ordered.Clear();
+        LbOrder.Items.Refresh();
+        LNum.Content = ordered.Count;
     }
     
     private void Search_OnClick(object sender, RoutedEventArgs e)
@@ -104,7 +105,7 @@ public partial class MainWindow : Window
         int x = 0;
         foreach (var item in Lb.Items)
         {
-            if (item.ToString()!.Contains(TxtSearch.Text))
+            if (item.ToString()!.Contains(TxtSearch.Text, StringComparison.CurrentCultureIgnoreCase))
             {
                 if (x == 0)
                 {
@@ -119,12 +120,18 @@ public partial class MainWindow : Window
         }
 
         MessageBox.Show(result != "" ? result : "Nincs ilyen pizza a kínálatunkban.", "Keresés eredménye",
-            MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBoxButton.OK, MessageBoxImage.None);
     }
 
     private void RefreshError()
     {
         LabelError.Content = "";
         LabelSizeError.Content = "";
+    }
+    
+    private void lb_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if(Lb.SelectedItem != null)
+            Label.Content = Lb.SelectedItem;
     }
 }
