@@ -7,11 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="Lb" VerticalAlignment="Top" ></ListBox>
+        <ListBox x:Name="Lb" VerticalAlignment="Top" HorizontalAlignment="Left"></ListBox>
+        <ListBox x:Name="LbOrder" VerticalAlignment="Top" HorizontalAlignment="Right"></ListBox>
         <TextBox x:Name="TxtAdd" Text="" Height="50" Width="300" HorizontalAlignment="Left"></TextBox>
-        <Button x:Name="BtnAdd" Height="50" Width="80" Click="BtnAdd_OnClick">Hozzáadás</Button>
-        <Button x:Name="BtnDelete" Height="50" Width="80" Click="BtnDelete_OnClick" HorizontalAlignment="Right" Margin="0,0,250, 0">Törlés</Button>
-        <Button x:Name="BtnOrder" Height="50" Width="100" Click="BtnOrder_OnClick" HorizontalAlignment="Right" Margin="0,0,50,0">Megrendelés</Button>
+        <TextBox x:Name="TxtSize" Text="" Height="50" Width="300" HorizontalAlignment="Left" Margin="0, 150, 0, 0"></TextBox>
+        <Button Height="50" Width="80" Click="BtnAdd_OnClick">Hozzáadás</Button>
+        <Button Height="50" Width="80" Click="BtnDelete_OnClick" HorizontalAlignment="Right" Margin="0,0,250, 0">Törlés</Button>
+        <Button Height="50" Width="100" Click="BtnOrder_OnClick" HorizontalAlignment="Center" Margin="0,150,0, 0">Megrendelés</Button>
+        <Button Height="50" Width="100" Click="BtnDeleteOrder_OnClick" HorizontalAlignment="Center" Margin="250,150,0, 0">Rendelés Törlése</Button>
         <Label x:Name="Label" Content="" VerticalAlignment="Bottom" Height="100" FontSize="40"></Label>
     </Grid>
 </Window>

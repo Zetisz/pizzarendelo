@@ -16,6 +16,7 @@ namespace pizzarendelo;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private List<string> sizes = ["kicsi", "közepes", "nagy"];
     public MainWindow()
     {
         InitializeComponent();
@@ -24,20 +25,13 @@ public partial class MainWindow : Window
 
     private void ListboxInit()
     {
-        List<string> list = ["Margherita", "Sonkás", "Hawaii", "Négy sajtos", "Magyaros"];
-        foreach (var i in list)
+        List<string> list1 = ["Margherita", "Sonkás", "Hawaii", "Négy sajtos", "Magyaros"];
+        foreach (var i in list1)
         {
             Lb.Items.Add(i);
         }
     }
     
-    private void GetIndex0()
-    {
-        var lbi = (ListBoxItem)
-            (Lb.ItemContainerGenerator.ContainerFromIndex(0));
-        Label.Content = lbi.Content.ToString();
-    }
-
     private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
     {
         if (!Lb.Items.Contains(TxtAdd.Text) && TxtAdd.Text != "")
@@ -51,6 +45,17 @@ public partial class MainWindow : Window
 
     private void BtnOrder_OnClick(object sender, RoutedEventArgs e)
     {
-        GetIndex0();
+        
+        Label.Content = Lb.SelectedItems[0];
+        if (sizes.Contains(TxtSize.Text))
+        {
+            var selectedPizza = Lb.SelectedItems[0] + " - " + TxtSize.Text;; 
+            LbOrder.Items.Add(selectedPizza);
+        }
+    }
+
+    private void BtnDeleteOrder_OnClick(object sender, RoutedEventArgs e)
+    {
+        LbOrder.Items.Remove(LbOrder.SelectedItems[0]);
     }
 }
