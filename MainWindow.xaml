@@ -11,10 +11,12 @@
         <ListBox x:Name="LbOrder" VerticalAlignment="Top" HorizontalAlignment="Right"></ListBox>
         <TextBox x:Name="TxtAdd" Text="" Height="50" Width="300" HorizontalAlignment="Left"></TextBox>
         <TextBox x:Name="TxtSize" Text="" Height="50" Width="300" HorizontalAlignment="Left" Margin="0, 150, 0, 0"></TextBox>
+        <TextBox x:Name="TxtNum" Text="0" Height="50" Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBox>
         <Button Height="50" Width="80" Click="BtnAdd_OnClick">Hozzáadás</Button>
         <Button Height="50" Width="80" Click="BtnDelete_OnClick" HorizontalAlignment="Right" Margin="0,0,250, 0">Törlés</Button>
         <Button Height="50" Width="100" Click="BtnOrder_OnClick" HorizontalAlignment="Center" Margin="0,150,0, 0">Megrendelés</Button>
         <Button Height="50" Width="100" Click="BtnDeleteOrder_OnClick" HorizontalAlignment="Center" Margin="250,150,0, 0">Rendelés Törlése</Button>
+        <Button Height="50" Width="140" Click="BtnDeleteOrder_OnClick" HorizontalAlignment="Right" Margin="0,150,60, 0">összes Rendelés Törlése</Button>
         <Label x:Name="Label" Content="" VerticalAlignment="Bottom" Height="100" FontSize="40"></Label>
     </Grid>
 </Window>

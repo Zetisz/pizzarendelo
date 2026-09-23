@@ -17,6 +17,7 @@ namespace pizzarendelo;
 public partial class MainWindow : Window
 {
     private List<string> sizes = ["kicsi", "közepes", "nagy"];
+    private int num;
     public MainWindow()
     {
         InitializeComponent();
@@ -51,6 +52,9 @@ public partial class MainWindow : Window
         {
             var selectedPizza = Lb.SelectedItems[0] + " - " + TxtSize.Text;; 
             LbOrder.Items.Add(selectedPizza);
+
+            num++;
+            TxtNum.Text = num.ToString();
         }
     }
 
