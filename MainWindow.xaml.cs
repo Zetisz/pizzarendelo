@@ -25,8 +25,8 @@ public partial class MainWindow : Window
 
     private void ListboxInit()
     {
-        List<string> list1 = ["Margherita", "Sonkás", "Hawaii", "Négy sajtos", "Magyaros"];
-        foreach (var i in list1)
+        List<string> pizzas = ["Margherita", "Sonkás", "Hawaii", "Négy sajtos", "Magyaros"];
+        foreach (var i in pizzas)
         {
             Lb.Items.Add(i);
         }
@@ -80,6 +80,12 @@ public partial class MainWindow : Window
         RefreshError();
         LbOrder.Items.Clear();
         LNum.Content = LbOrder.Items.Count;
+    }
+    
+    private void Search_OnClick(object sender, RoutedEventArgs e)
+    {
+        RefreshError();
+        MessageBox.Show($"Eredmény: {TxtSearch.Text}", "Keresés Eredmény",  MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void RefreshError()

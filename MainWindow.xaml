@@ -5,20 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pizzarendelo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Pizzarendelő" Height="450" Width="800">
     <Grid>
         <ListBox x:Name="Lb" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" MaxWidth="200" MaxHeight="160" Margin="20,0,0,0"></ListBox>
         <ListBox x:Name="LbOrder" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="20" MaxWidth="200" MaxHeight="160" Margin="0,0,20,0"></ListBox>
-        <TextBox x:Name="TxtAdd" Text="" Height="50" Width="500" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0"></TextBox>
-        <TextBox x:Name="TxtSize" Text="" Height="50" Width="500" FontSize="20" HorizontalAlignment="Left" Margin="20, 150, 0, 0"></TextBox>
+        <TextBox x:Name="TxtAdd" Text="" Height="50" Width="500" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,0"></TextBox>
+        <TextBox x:Name="TxtSize" Text="" Height="50" Width="500" FontSize="30" HorizontalAlignment="Left" Margin="20, 150, 0, 0"></TextBox>
         <Label x:Name="LNum" Content="0" Height="50" Width="50" FontSize="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,10"></Label>
         <Button Height="50" Width="100" Click="BtnAdd_OnClick" HorizontalAlignment="Right" Margin="0,0,150,0">Hozzáadás</Button>
         <Button Height="50" Width="100" Click="BtnDelete_OnClick" HorizontalAlignment="Right" Margin="0,0,30, 0">Törlés</Button>
         <Button Height="50" Width="100" Click="BtnOrder_OnClick" HorizontalAlignment="Right" Margin="0,150,150, 0">Megrendelés</Button>
         <Button Height="50" Width="100" Click="BtnDeleteOrder_OnClick" HorizontalAlignment="Right" Margin="0,150,30, 0">Rendelés törlése</Button>
         <Button Height="50" Width="140" Click="BtnDeleteAll_OnClick" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80, 10">Összes rendelés törlése</Button>
+        <Button Height="50" Width="140" Click="Search_OnClick" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,230, 10">Keresés</Button>
         <Label x:Name="Label" Content="" VerticalAlignment="Top" HorizontalAlignment="Center" Height="100" FontSize="40"></Label>
         <Label x:Name="LabelError" Content="" VerticalAlignment="Top" HorizontalAlignment="Center" Height="100" FontSize="20" Foreground="Crimson" Margin="0,100,0,0"></Label>
         <Label x:Name="LabelSizeError" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="100" FontSize="20" Foreground="Crimson" Margin="20, 0,0,10"></Label>
+        <TextBox x:Name="TxtSearch" Text="" Height="50" Width="400" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20, 0, 0, 10"></TextBox>
     </Grid>
 </Window>
