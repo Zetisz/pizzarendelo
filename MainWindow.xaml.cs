@@ -16,7 +16,7 @@ namespace pizzarendelo;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private List<string> sizes = ["kicsi", "közepes", "nagy"];
+    private List<string> _sizes = ["kicsi", "közepes", "nagy"];
     public MainWindow()
     {
         InitializeComponent();
@@ -34,9 +34,18 @@ public partial class MainWindow : Window
     
     private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
     {
+        if (TxtAdd.Text.Length == 0)
+        {
+            LabelError.Content = "Üres nevű pizzát nem lehet hozzáadni!";
+            return;
+        }
         RefreshError();
-        if (!Lb.Items.Contains(TxtAdd.Text) && TxtAdd.Text != "")
+        if (!Lb.Items.Contains(TxtAdd.Text))
             Lb.Items.Add(TxtAdd.Text);
+        else
+        {
+            LabelError.Content = "Ez a pizza mar létezik!";
+        }
     }
 
     private void BtnDelete_OnClick(object sender, RoutedEventArgs e)
@@ -50,12 +59,12 @@ public partial class MainWindow : Window
     {
         if (Lb.SelectedItems.Count == 0)
         {
-            LabelError.Content = "Valasszon pizzat!";
+            LabelError.Content = "Válasszon pizzát!";
             return;
         }
         RefreshError();
         Label.Content = Lb.SelectedItems[0];
-        if (sizes.Contains(TxtSize.Text))
+        if (_sizes.Contains(TxtSize.Text))
         {
             var selectedPizza = Lb.SelectedItems[0] + " - " + TxtSize.Text;; 
             LbOrder.Items.Add(selectedPizza);
@@ -84,8 +93,33 @@ public partial class MainWindow : Window
     
     private void Search_OnClick(object sender, RoutedEventArgs e)
     {
+        if (TxtSearch.Text.Length == 0)
+        {
+            LabelError.Content = "A kereső üres!";
+            return;
+        }
         RefreshError();
-        MessageBox.Show($"Eredmény: {TxtSearch.Text}", "Keresés Eredmény",  MessageBoxButton.OK, MessageBoxImage.Information);
+        
+        string result = "";
+        int x = 0;
+        foreach (var item in Lb.Items)
+        {
+            if (item.ToString()!.Contains(TxtSearch.Text))
+            {
+                if (x == 0)
+                {
+                    result = item.ToString()!;
+                    x++;
+                }
+                else
+                {
+                    result += $", {item}";
+                }
+            }
+        }
+
+        MessageBox.Show(result != "" ? result : "Nincs ilyen pizza a kínálatunkban.", "Keresés eredménye",
+            MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void RefreshError()
